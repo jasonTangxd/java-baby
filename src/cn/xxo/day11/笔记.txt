@@ -1,0 +1,73 @@
+﻿创建多线程类：
+01：集成Thread类，override 其中的run()；
+守护线程：要在start()之前执行是否为守护线程 否则：
+Exception in thread "main" java.lang.IllegalThreadStateException
+
+02：实现一个Runnable接口，override 其中的run();
+
+
+线程的属性：
+操作对象是线程对象。
+1、获取id :getId
+2、设置和获取name：setName getName
+3、是否为守护线程：setDaemon
+4、优先级：针对于处理就绪状态但是还没有运行的线程。
+线程的静态方法：
+Thread.yield() 让行：交出cpu的执行权限，进入就绪状态
+Thread.sleep() 线程阻塞一定时间后接着执行。单位为毫秒。如果当前线程持有某个对象的锁，则会在睡眠的过程中一直持有。
+线程对象方法：
+t.interrupt() ：打断t线程。t用 isInterrupted() 
+A线程执行到了 t(B线程).interrupt()：
+InterruptedException
+t.join()：在一个线程里调用线程t的join。相当于确保当前线程之后的代码在t线程执行完毕之后运行。
+A线程执行到了 t(B线程).join()：
+1、A线程阻塞，等待B线程执行完毕，A线程执行（如果此时B线程执行完毕了，A接着执行）。
+
+
+
+
+
+同步：
+1:Synchronized 修饰方法名private synchronized void test() 
+2:同步块儿
+synchronized（对象）此对象必须代码中会出问题的对象。其它对象无效！上述例子中的num。
+{
+	需要同步的代码；
+}
+1：有一个线程每秒产生一个随机的小于10的数字，10秒内产生的数字的加和，打印出来。
+
+多线程的状态：thread.getState()
+1、创建一个线程为 NEW
+2、start之后为就绪状态然后由cpu分配资源变为RUNNABLE
+3、Thread.sleep(5000);之后  TIMED_WAITING。
+4、执行完毕后状态为:TERMINATED
+					
+造成死锁的原因是：不按顺序的资源竞争。
+
+周期性的线程池：
+固定延迟：
+任务提交的时间：Tue Mar 29 15:56:34 CST 2016
+第一次任务开始时间：
+pool-1-thread-1hello beginTue Mar 29 15:56:36 CST 2016
+第一个任务结束时间：
+pool-1-thread-1hello endTue Mar 29 15:56:38 CST 2016
+第二次任务开始时间：
+pool-1-thread-1hello beginTue Mar 29 15:56:42 CST 2016
+固定间隔：
+01：执行时间小于间隔时间
+任务提交的时间：Tue Mar 29 16:04:19 CST 2016
+第一个任务开始时间：
+pool-1-thread-1hello beginTue Mar 29 16:04:22 CST 2016
+第一个任务结束时间：
+pool-1-thread-1hello endTue Mar 29 16:04:24 CST 2016
+第二个任务开始时间：22+4
+pool-1-thread-1hello beginTue Mar 29 16:04:26 CST 2016
+02：执行时间大于间隔时间：
+
+任务提交时间：Tue Mar 29 16:09:28 CST 2016
+第一个任务开始时间：
+pool-1-thread-1hello beginTue Mar 29 16:09:31 CST 2016
+第一个任务结束时间：
+pool-1-thread-1hello endTue Mar 29 16:09:36 CST 2016
+第二个任务开始时间：
+pool-1-thread-1hello beginTue Mar 29 16:09:36 CST 2016

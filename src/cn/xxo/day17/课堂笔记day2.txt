@@ -1,0 +1,72 @@
+﻿字符流FileWriter和FileReader
+
+FileWriter：文本写  定义写入目的
+write("str");	//写入操作
+write(buf,0,len); //写入操作  
+flush();	//刷新缓冲区
+close();	//作用是刷新并且关闭流
+
+FileReader：文本读
+int ch = fr.read();  //读取单个字符
+int len = fr.read(buf); //读取一个数组
+close();		//关闭读取流
+
+
+BufferedReader：高效读取类
+readLine()； //读取一个文本行
+
+BufferedWriter：高效写入类
+newLine()；  //写入一个换行符
+
+
+字节流：InputStream 和 OutputStream
+FileOutputStream 用来操作文件的字节流
+write("superman".getBytes()); \\写入时直接将内容写入目的地
+flush()；\\没有实现该方法
+
+FileInputStream 用来读取文件的字节流
+read(); \\一次只读取一个字节
+available(); \\此方法是获取当前文件的大小来创建一个字节数组
+
+类比
+FileOutputStream -- FileWriter
+FileInputStream -- FileReader
+
+BufferedInputStream对字节流的高效读
+BufferedOutputStream对字节流的高效写
+当使用read()方法时，在写入新的文件时，不建议刷新，刷新会使得效率降低。
+
+System.in;\\只有一个，不用关闭
+in.close(); \\如果关闭，必须要重启系统（java程序）
+
+System.out;\\输出端是控制台
+
+转换流
+InputStreamReader：将字节流转换为字符流
+OutputStreamWriter:将字符流转换为字节流
+
+使用转换流向简体中文window系统中创建文本文件时默认使用的是utf-8进行编码。
+直接在window中创建一个文本文件，默认使用的是gbk进行编码。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

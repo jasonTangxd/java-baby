@@ -1,0 +1,110 @@
+﻿input / output
+
+设备：磁盘  U盘  光盘 等。
+按照数据流向来分：输入流和输出流。
+按操作数据类型来分：字节流和字符流。
+字符流：字节流+对应的码表。
+
+字符流。
+Reader 和 Writer。
+
+字节流
+InputStream 和 OutputStream。
+
+
+写文件的FileWriter类：
+FileWriter fw = new FileWriter("abc.txt");
+write("abc"); //写到缓冲区
+flush();//刷新缓冲区 将数据写到目的地
+close()；//关闭流  刷新缓冲区
+
+读取文件的FileReader类：
+FileReader fr = new FileReader("abc.txt");
+read()方法：
+int ch = fr.read(); //每次读取一个字符  读到文件末尾 返回-1
+
+写法：
+int ch = 0;
+while((ch = fr.read()) != -1){
+sout(ch);
+}
+
+高效读：
+char[] buf = new char[1024]; //建议是1024的整数倍
+int len = 0;
+while((len = fr.read(buf)) != -1){
+sout(new String(buf , 0 , len))
+}
+
+高效读写：
+char[] buf = new char[1024]; //建议是1024的整数倍
+int len = 0;
+while((len = fr.read(buf)) != -1){
+fw.write(buf , 0 , len) 
+}
+
+
+高效写入子类BufferedWriter
+write("abcd")；
+flush();//从缓冲区中将数据刷到目的地
+close();
+newLine()；//另起一行
+
+高效读取子类BufferedReader
+read();//返回一个字符
+read(buf);//返回读取长度
+readLine();//读取一个文本行
+
+
+装饰者模式和继承的区别
+继承
+Reader
+	|--MP3Reader:读取mp3音乐
+		|--BufferedMP3Reader高效读取mp3音乐
+	|--AVIReader:读取avi视频
+		|--BufferedAVIReader :高效读取avi视频
+	|--MKVReader:读取mkv视频
+		|--BufferedMKVReader :高效读取mkv视频
+
+装饰者设计模式
+Reader
+	|--MP3Reader:读取mp3音乐
+	|--AVIReader:读取avi视频
+	|--MKVReader:读取mkv视频
+	|--BufferedReader :高效读取类
+
+总结：继承方式实现功能增强会产生复杂的继承关系
+	而装饰者模式会大大减少继承关系
+
+
+LineNumberReader用法
+getLineNumber();\\获取数据行号
+setLineNumber();\\设置数据行号
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

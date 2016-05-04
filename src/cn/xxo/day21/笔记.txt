@@ -1,0 +1,16 @@
+1：正则表达式
+	其实就是简化了对字符串的复杂操作
+2:正则的功能：
+	1，匹配
+		使用的就是string里面的matches
+		
+	2，切割。
+		使用Stirng中的split方法
+		
+	3，替换。
+		使用string里面的replaceAll
+		
+	4，获取。
+		这个操作需要使用java中的一个正则类，pattern
+		
+		

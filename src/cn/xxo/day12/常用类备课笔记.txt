@@ -1,0 +1,360 @@
+﻿常用类的操作
+一、String
+	概述：
+		将字符用双引号引起来的整体我们称之为字符串，使用非常频繁,同时也是一个非常特殊的对象.
+			eg.String str = "abc"; str = "add";
+		字符串一旦初始化就不可以被改变。
+			eg. String s = "abc"; String s1 = new String("abc"); String s2 = "abc"
+				s == s1?//false
+				s == s2?//true
+			说明：当"abc"被创建的时候呢，是在方法区的常量池中创建了3个字符'a','b','c'，当再一次创建字符串的时候呢，
+			就从常量池中取出相应的字符组成字符串。
+	问题：
+		String s1 = "abc";
+		String s2 = "ab";
+		String s3 = "c";
+		String s4 = s2+s3;
+		String s5 = "ab"+"c";
+		sop(s1==s4);//false
+		sop(s1==s5);//true
+	构造方法：
+		new String();初始化一个新创建的 String 对象，使其表示一个空字符序列
+			等同于String s = "";
+		new String(String str);
+			初始化一个新创建的 String 对象，使其表示一个与参数相同的字符序列；
+			换句话说，新创建的字符串是该参数字符串的副本
+		new String(byte[] bytes);通过使用平台的默认字符集解码指定的 byte 数组，构造一个新的 String
+			byte[] bytes = {98,99,100};
+			new String(bytes);
+		new String(char[] chs);分配一个新的 String，使其表示字符数组参数中当前包含的字符序列
+			char[] chs = {'a','c'};
+			new String(chs);
+		demo:
+			String s = "abc";和String s = new String("abc");有什么区别？
+			
+	常用API：
+		1、判断
+			1.1 boolean equals(Object)
+				判断两个字符串内容是否相同：覆盖了Object类中的方法。
+			1.2 boolean equalsIgnoreCase(string)
+				判断两个字符串内容是否相同，忽略大小写。
+			1.3 boolean contains(string)
+				判断一个字符串中是否包含另一个字符串,jdk1.5出现的功能。
+			1.4 boolean startsWith(string)
+				判断一个字符串是否以一个字符串开头
+			1.5 boolean endsWith(string)
+				判断一个字符串是否以一个字符串结尾
+			1.6 boolean isEmpty()
+				判断字符串是否有具体的字符数据。或者成为判断字符串是否有内容
+				原理就是判断字符串的长度是否为0.该方法是jdk1.6版本。
+		2、获取
+			2.1 int length()
+				获取字符串的长度。
+			2.2 char charAt(index)
+				根据指定的位置获取该位置对应的字符。
+			2.3 int indexOf(ch) 
+				根据字符获取该字符第一次出现的位置
+				int idnexOf(ch,fromIndex)
+					从fromIndex位置开始获取ch第一次出现的位置。
+				找到了就返回第一次出现角标位，没找到，就返回-1.所以，
+				可以通过-1这种方式判断一个字符是否在字符串存在。
+			2.4 int indexOf(string)
+				根据字符串获取该字符串第一次出现的位置
+				int idnexOf(string,fromIndex)
+					从fromIndex位置开始获取string第一次出现的位置。
+				找到了就返回第一次出现角标位，没找到，就返回-1.所以，
+				可以通过-1这种方式判断一个字符串是否在字符串存在。这既是contains方法原理。
+			2.5 同样是获取一个字符或者字符串第一次出现的位置，但是是通过反向索引完成。
+				功能和indexOf一致。
+				int lastIndexOf(ch);
+				int lastIdnexOf(ch,fromIndex):
+				int lastIndexOf(string);
+				int lastIdnexOf(string,fromIndex):
+			2.6 获取字符串中的一部分字符串。
+				String substring(start):从start开始到结尾。
+				String substring(start,end);获取到的字符串包含start位，不包含end位。
+		3、转换
+			3.1 将字符串转成字节数组。
+				byte[] getBytes():编码解码时较为常用。还有在io流操作字节数据也很常用。
+			3.2 将字符串转成字符数组。
+				char[] toCharArray():
+			3.3 将字符数组或者数组中的一部分转成字符串。
+				static String copyValueOf(char[])
+			3.4 将字符数组或者数组中的一部分转成字符串。
+				static String valueOf(char[]):
+			3.5 基本数据类型变成字符串------了解。
+				static String valueOf(int);
+				static String valueOf(double);
+				static String valueOf(boolean);
+				...
+				int x = 3;
+				String.valueOf(x);--> "3";
+				x+""--> "3";
+			3.6 将对象变成字符串----------了解。
+				static String valueOf(object);
+				和object.toString():结果是一样的。
+			3.7 将字符串转成大写或者小写。
+				小写：toLowerCase():
+				大写：toUpperCase():
+		4、替换
+			4.1 替换字符。
+				String replace(oldChar,newChar):
+			4.2 替换字符串
+				String replace(string,string);
+		5、切割
+			String[] split(regex);
+			注意：//如果是.的话是特殊字符，需要转义
+		6、去除两端的空格
+			String trim();
+				public static String trim(String str) {
+					int start = 0, end = str.length() - 1;
+					while((start < end) && ' ' == str.charAt(start))
+						start++;
+					while((start < end) && ' ' == str.charAt(end))
+						end--;
+					return str.substring(start, end == str.length() - 1 ? str.length() : end);
+				}
+		7、比较
+			compareTo(String anotherString)
+	练习：
+		1：反转字符串"woainimenmemeda"成为"adememneminiaow"
+		思路：
+			1、Str--->char[]
+			2、数组进行交换
+			3、char[]-->String
+			public static String resverseStr(String str) {
+				//1、str--->char[]
+				char[] chs = str.toCharArray();
+				//2、数组进行交换
+				resverseArray(chs);
+				//3、char[]-->String
+				return new String(chs);
+			}
+
+			private static void resverseArray(char[] chs) {
+				for (int start = 0, end = chs.length - 1; start < end; start++, end--) {
+					swap(chs, start, end);
+				}
+			}
+
+			private static void swap(char[] chs, int start, int end) {
+				char tmp = chs[start];
+				chs[start] = chs[end];
+				chs[end] = tmp;
+			}			
+		2：子串"nba"在字符串"nbaernbatynbauinbaopnba"出现的次数
+		思路：
+			1，先获取子串在整串中第一次出现的位置，如果是-1，说明不存在子串。
+				如果不是-1，记录住该位置。说明存在，这时定义一个计数器，并自增。
+			2，接下来，将整串中被查找的去掉，获取剩下没有被查找剩余字符串。
+				在进行指定子串查找。查到后计数器继续自增。
+			3，步骤可以重复，当最后没有找到指定子串，结束功能，返回计数器，
+			确定一个问题：如何确定下一次要查找的剩余子串的起始位置。
+			这个位置就是上一次指定子串的位置+指定子串的长度。
+			这种做法，会在内存中产生很多字符串。
+			private static int countSubStr_2(String str, String key) {
+				int count = 0;
+				int index = 0;
+				while((index = str.indexOf(key)) != -1) {
+					str = str.substring(++index);
+					count++;
+				}
+				return count;
+			}
+		另一个做法：
+			可以参考indexOf(string,fromindex);
+			思路：
+			1，第一次，从0角标查找指定子串，
+			2，第二次，从指定位置(就是第一次出现的位置+指定子串的长度)，查找指定子串的位置
+			3，找不到就结束。
+				private static int countSubStr(String str, String key) {
+					int count = 0;
+					int index = 0;
+					while((index = str.indexOf(key, index)) != -1) {
+						index++;
+						count++;
+					}
+					return count;
+				}
+		3：获取两个字符中最大相同子串 .
+			"sadabcdfghjkl"
+			"werabcdtyu"
+			思路：
+			1，既然取得是最大子串，先看短的那个字符串是否在长的那个字符串中。
+			   如果存在，短的那个字符串就是最大子串。
+			2，如果不是呢，那么就将短的那个子串进行长度递减的方式去子串，去长串中判断是否存在。
+			   如果存在就已找到，就不用在找了。
+				private static String getMaxSubstring(String src1, String src2) {
+					String max = src1.length() > src2.length() ? src1 : src2;
+					String min = src1.length() > src2.length() ? src2 : src1;
+					if(max.contains(min)) { //如果最小的已经包含在最大的字符串中的话 那就返回最小的
+						return min;
+					}
+					for(int x = 1; x < min.length(); x++) {
+						for(int a = 0,b = min.length() - x; b != min.length()+1; a++,b++) {
+							String tmp = min.substring(a, b);
+							if(max.contains(tmp)) {
+								return tmp;
+							}
+						}
+					}
+					return null;
+				}
+==========================================================================================================================			
+二、StringBuffer和StringBuilder
+	StringBuffer
+		1：Buffer就是传说中的缓冲区（CRUD的操作）
+			字符串缓冲区，它是存储字符串数据的，可以称之为一个容器。
+			既然是一个容器，就应该具备比如增加，删除等操作，那么这个stringbuffer具备哪些功能呢，看API
+			1，添加。
+			 StringBuffer append():可以将基本数据类型数据和引用类型数据添加到缓冲区。
+					将数据添加到缓冲区的末尾。数据追加。
+					这个方法返回来的还是原理的缓冲区对象。
+			sb.append的返回值还是原来的缓冲区对象。可以使用==号进行判断，发现值为true。
+			因为返回值是自己，所以可以链式调用
+		2：缓冲区的特点：
+			1,可以添加基本数据和引用数据。添加数据完毕，
+			一般都需要将其转成字符串进行使用。通过toString方法转成字符串。
+			2,该容器和数组不一样，数组是固定长度的，而且只能添加同一类型。
+				而StringBuffer长度是可变的，可以添加不同类型。
+			类型一致的数据，可以使用数组，也可以StringBuffer。
+			但是数组添加元素，需要保证数据的类型不变。而StringBuffer添加完数据，全变成字符串。
+			3,StringBuffer可以对字符串进行修改。
+		StringBuffer功能-添加-删除
+			1：除了append还有insert，把数据插入到指定位置。指定偏移量
+				这个相当于对字符串进行修改
+			2：sb.delete(start,stop),删除指定区间的数据
+				特殊使用形式，清空缓冲区，sb.delete(0,sb.length());
+			3：删除指定位置的字符
+				sb.deleteCharAt(index);	
+			功能-获取字符串出现的位置&替换&修改&反转
+			4，获取字符串的出现的位置。
+				int lastIndexOf(str);
+				int indexOf(str);
+			5，替换：
+				StringBuffer replace(start,end,string);
+			6，修改：
+				void setCharAt(index,char);
+			7，反转：
+				StringBuffer reverse();
+			8：保留前面多少个字符
+				sb.setLength(3);//保留指定长度数据
+			总结：其实stringbuffer之所以可以存储数据，就是因为底层封装是一个字符数组
+	StringBuiler
+		1:Jdk1.5的时候出现了一个stringbuilder
+		这个里面的方法和stringbuffer里面的一样。
+		Stringbuffer是一个线程安全的类，一个线程在操作的时候，另一个线程不能操作。
+
+		区别：
+			StringBuffer：是线程安全的。
+			StringBuilder：是线程不安全的。
+			日后开发，常用的是StringBuilder.因为一般都是单线程。主线程在运行。
+			如果真的有了多线程，那么建议使用StringBuffer.
+			StringBuilder的出现，是为了提高了效率。
+			JDK的升级：不外乎三个因素：
+			1，简化书写。
+			2，提高效率。
+			3，提高安全性。
+
+		StringBuilder() 构造一个其中不带字符的字符串缓冲区，初始容量为 16 个字符。
+		注意，这个初始容量，就算是默认16个字符，超过16个字符也能往里面放。
+		里面还有一个带有构造参数的stringbuilder，这个里面可以指定初始化容量，如果指定30个，那么多于30个的字符也能存到里面。
+		如果你能确定字符串的长度，就使用带有参数的创建
+		如果不能确定字符串的长度，就使用默认的，
+		这主要是牵扯到性能的问题，
+		注意：
+		如果你能确定字符串的长度，就直接指定，假设是长度是50的话，你还使用默认的构造参数，这样只能存16个字符，
+		当添加第17个字符的时候，底层是需要重新创建一个新数组，把之前的数据拷贝到新数组，这样频繁的创建数据是
+		非常消耗性能和资源的。所以，建议，如果能确定字符串的长度，就直接指定长度即可。
+		string和stringbuilder的区别？
+		对数据相连接变成新的字符串
+		stringbuilder比string效率高些
+		string一旦被初始化不可以被改变
+		stringbuilder，可以对字符串进行修改
+		需求：
+			将一个int数组变成字符串
+			可以使用for循环进行遍历数组，组成字符串
+			第一种，使用字符串拼接，这种会在内存中产生过多的字符串对象。
+			第二种，使用stringbuilder，这种效率高。
+==========================================================================================================================	
+三、自动装箱和自动拆箱
+	基本数据类型对象包装类
+	1：这个名字比较长，我们在学习java的时候学习过八种基本数据类型。
+		这八种基本数据类型只是表示一些基本的常量值。
+		如果想对这个值做一些复杂操作的话，就需要这个对象具备一些功能。
+		可是值本身是不具备任何属性功能的。
+		所以就把基本数据类型，封装成了对象。
+		封装之后，这些对象就具备了很多功能。
+
+		将基本数据类型封装成了对象，提供了更多的属性和行为，可以对具体数据进行操作
+		byte	Byte
+		short	Short
+		int		Integer
+		long	Long
+		char	Character
+		boolean Boolean
+		float	Float
+		double	Double
+		我们主要说integer，这个是常用的，其他的也是类似的。
+		把一个整数封装成对象有什么好处呢？
+		可以使用对象中的一些功能。
+	2：基本数据类型对象包装类的功能，可以完成基本数据和字符串之间的转换。
+		第一种转换方式
+		static int parseInt(numberstring)
+		可以吧字符串转成一个基本数据类型。字母转换数字是会报错的。
+		规律：大部分都是parseXyz 只有
+		第二种转换方式
+		Integer i= new Integer("123");
+		int num = i.intValue();
+		sop(num+4);
+		Integer的tostring方法，可以把数字转为字符串，再和数字相加，这样打印出来的是字符串。
+		Equals方法
+			Integer x = new Integer("123");
+			Integer y = new Integer(123);
+			sop(x==y);
+			sop(x.equals(y));//复写了object类中的方法，integer对象比较的是对象中的封装的整数是否相同。
+练习
+1：操作基本数据类型对象时，可不可以像操作基本数据类型一样呢？
+	jdk1.5新特性，自动装箱拆箱。：就是简化书写。
+	Integer i = new Integer(4);
+	Integer x = 4;//相当于是new Integer(4)基本数据类型的装箱，自动封装成对象。
+	x = x+5;//x.intValue()+5,拆箱//把一个x转为基本数据类型，相加完的结果是9，自动装箱成Integer对象，赋给x
+	封装成对象之后，好处是简化了书写，但是也有弊端
+	对象的话是可以指定为null的，这样的时候再执行就会报空指针异常，因为null不能调用intvalue这个方法。
+	Integer x = null;
+	x = x+5;
+	sop(x);
+2：还有一个小插曲，如果x和y的值为127的话，都是true，如果是128的话，第一个是false，第二个是true
+	Integer x = 128;
+	Integer y = 128;
+	System.out.println(x==y);
+	System.out.println(x.equals(y));
+	注意：当使用新特性自动装箱时，如果取值在byte范围内，那么两个变量取值一致，不会在内存中开辟新的对象空间。
+	所以这两个变量如果取值一致，而且都在byte范围内，两个变量指向的是同一个对象。
+3:将一个数字字符串"12345678"不适用Long的API转换成为long类型的数字
+	String str = "12345678";
+	char[] chs = str.toCharArray();
+	long sum = 0;
+	for(int x = 0; x < chs.length; x++) {
+		sum += (chs[x] - '0') * Math.pow(10, chs.length - x -1);
+	}
+	System.out.println(Long.parseLong(str) - sum);
+	或者
+	String str = "1234567";
+	char[] chs = str.toCharArray();
+	long sum = 0;
+	for(int x = 0; x < chs.length; x++) {
+		long tmp = 1;
+		for(int y = 1; y < chs.length - x; y++) {//模拟了幂指次方的计算
+			tmp *= 10;
+		}
+		sum += (chs[x] - '0') * tmp;
+	}
+	System.out.println(Long.parseLong(str) - sum);
+	
+	
+作业：
+必须将今天讲的所有的联系题自己敲一遍
+1、自己手动写一个讲int类型的数字转化为8，16进制的字符串
+2、自己实现一个String中trim()方法
+3、自己实现一个String类中toUpperCase()的方法

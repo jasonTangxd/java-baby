@@ -1,0 +1,31 @@
+﻿创建多线程类：
+01：集成Thread类，override 其中的run()；
+守护线程：要在start()之前执行是否为守护线程 否则：
+Exception in thread "main" java.lang.IllegalThreadStateException
+
+02：实现一个Runnable接口，override 其中的run();
+
+
+线程的属性：
+操作对象是线程对象。
+1、获取id :getId
+2、设置和获取name：setName getName
+3、是否为守护线程：setDaemon
+4、优先级：针对于处理就绪状态但是还没有运行的线程。
+线程的静态方法：
+Thread.yield() 让行：交出cpu的执行权限，进入就绪状态
+Thread.sleep() 线程阻塞一定时间后接着执行。单位为毫秒。
+线程对象方法：
+t.interrupt() ：打断t线程。t用 isInterrupted() InterruptedException
+t.join()：在一个线程里调用线程t的join。相当于确保当前线程之后的代码在t线程执行完毕之后运行。
+
+
+
+
+同步：
+1:Synchronized 修饰方法名private synchronized void test() 
+2:同步块儿
+synchronized（对象）此对象必须代码中会出问题的对象。其它对象无效！上述例子中的num。
+{
+	需要同步的代码；
+}
