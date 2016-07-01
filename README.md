@@ -1,5 +1,5 @@
-# JavaStudy_20160426
-Hadoop预习之java基础
+# JavaStudy_20120106
+之前学习使用的java基础，最近把它放到GitHub里面
 
 # 博客地址
-[http://blog.xiaoxiaomo.com](http://blog.xiaoxiaomo.com)
+小小默：[http://blog.xiaoxiaomo.com](http://blog.xiaoxiaomo.com)
