@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test3 {
 	public static void main(String[] args) throws IOException {
 		//指定一个输出源
-		FileWriter fw = new FileWriter("abc.txt",true);
+		FileWriter fw = new FileWriter("file/abc.txt",true);
 		
 		//写入数据
 		fw.write("superman1");

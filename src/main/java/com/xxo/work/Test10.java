@@ -18,7 +18,7 @@ public class Test10 {
         Map<String,Integer> map = new HashMap<String,Integer >() ;
 
         //1. 读取文本文件
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("abc.txt"))) ;
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("file/abc.txt"))) ;
 
         String line = null ;
         while ( ( line = br.readLine())  != null ){

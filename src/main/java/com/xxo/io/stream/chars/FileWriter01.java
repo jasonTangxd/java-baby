@@ -16,7 +16,7 @@ public class FileWriter01 {
     public static void main(String[] args) throws IOException {
 
         //打开一个字符写入流
-        FileWriter fw = new FileWriter("abc.txt") ;
+        FileWriter fw = new FileWriter("file/abc.txt") ;
 
         //写入文件
         fw.write("abcf"+LINESEPARATOR+"sdfs");

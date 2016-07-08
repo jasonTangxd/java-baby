@@ -15,7 +15,7 @@ public class Test1 {
 		 * 类在创建文件时，如果不存在，创建一个，如果存在，覆盖。
 		 */
 		//参数是路径+文件名
-		FileWriter fw = new FileWriter("abc.txt");
+		FileWriter fw = new FileWriter("file/abc.txt");
 		//将数据写到缓冲区
 		fw.write("abcd");
 		//将缓冲区的数据刷到具体的文件中 

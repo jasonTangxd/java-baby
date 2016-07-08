@@ -14,7 +14,7 @@ public class Test1 {
 
     public static void main(String[] args) throws IOException {
         //1. 从FileInputStream中获取通道channel
-        FileInputStream inputStream = new FileInputStream("abc.txt");
+        FileInputStream inputStream = new FileInputStream("file/abc.txt");
         FileChannel channel = inputStream.getChannel();
 
         //2. 创建buffer

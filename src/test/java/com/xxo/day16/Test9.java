@@ -14,7 +14,7 @@ public class Test9 {
 
 	public static void main(String[] args) throws IOException {
 		//写入源
-		FileWriter fw = new FileWriter("abc.txt");
+		FileWriter fw = new FileWriter("file/abc.txt");
 		BufferedWriter bfr = new BufferedWriter(fw);
 		
 		//开始写

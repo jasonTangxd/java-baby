@@ -11,7 +11,7 @@ import java.io.IOException;
 public class FileInputStream01 {
     public static void main(String[] args) throws IOException {
 
-        FileInputStream fis = new FileInputStream("abc.txt") ;
+        FileInputStream fis = new FileInputStream("file/abc.txt") ;
 
         // 方法一：fis.read() 每次读取一个字节
         // 如果读取中文（两个字节）就会出现乱码

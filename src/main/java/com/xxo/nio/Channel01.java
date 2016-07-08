@@ -12,7 +12,7 @@ public class Channel01 {
 
     public static void main(String[] args) throws IOException {
         //1. 定义通道
-        FileChannel inChannel = new RandomAccessFile("abc.txt", "rw").getChannel();
+        FileChannel inChannel = new RandomAccessFile("file/abc.txt", "rw").getChannel();
 
         //2. 缓冲区
         ByteBuffer buf = ByteBuffer.allocate(1024);

@@ -71,7 +71,7 @@ public class MyBufferReader {
 
 class MyBufferReaderTest{
     public static void main(String[] args) throws IOException {
-        MyBufferReader reader = new MyBufferReader(new FileReader("abc.txt"));
+        MyBufferReader reader = new MyBufferReader(new FileReader("file/abc.txt"));
 
 //        int c = -1 ;
 //        while ( ( c = reader.myRead() ) != -1 ){

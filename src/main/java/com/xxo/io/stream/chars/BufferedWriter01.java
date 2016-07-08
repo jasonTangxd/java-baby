@@ -15,7 +15,7 @@ public class BufferedWriter01 {
         BufferedWriter bfr = null ;
         try {
             //BufferedWriter需要传入一个Writer这里我们传入Writer的实现类FileWriter
-            bfr = new BufferedWriter(new FileWriter("abc.txt" , true)) ;
+            bfr = new BufferedWriter(new FileWriter("file/abc.txt", true)) ;
             bfr.write("fsfsdfsfsa"); //写入
             bfr.write("ab"); //不断写入
             bfr.newLine();  //换行

@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 public class FileProperty {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("abc.txt") ;
+        File file = new File("file/abc.txt") ;
 
         System.out.println( "getAbsolutePath : " + file.getAbsolutePath() ); //绝对路径
         System.out.println( "getName : " + file.getName() ); //文件名

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test5 {
 	public static void main(String[] args) throws IOException {
 		//源文件
-		FileReader fr = new FileReader("abc.txt");
+		FileReader fr = new FileReader("file/abc.txt");
 		
 		char[] buf = new char[2];
 		

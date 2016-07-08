@@ -12,7 +12,7 @@ public class FileReader01 {
 
         FileReader fr = null ;
         try {
-            fr = new FileReader("abc.txt") ;
+            fr = new FileReader("file/abc.txt") ;
 //            int read = fr.read();
 //            System.out.println(read);
 //            int read2 = fr.read();

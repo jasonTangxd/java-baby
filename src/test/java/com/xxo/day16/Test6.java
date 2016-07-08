@@ -12,7 +12,7 @@ public class Test6 {
 
 	public static void main(String[] args) throws IOException {
 		//源文件
-		FileReader fr = new FileReader("abc.txt");
+		FileReader fr = new FileReader("file/abc.txt");
 		
 		
 		//开始读取

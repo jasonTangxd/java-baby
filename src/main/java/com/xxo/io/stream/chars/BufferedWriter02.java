@@ -13,7 +13,7 @@ public class BufferedWriter02 {
         BufferedWriter bfw = null ;
         BufferedReader bfr = null ;
         try {
-            bfr = new BufferedReader(new FileReader("abc.txt")) ;
+            bfr = new BufferedReader(new FileReader("file/abc.txt")) ;
             bfw = new BufferedWriter(new FileWriter("abc_copy2.txd")) ;
 
             //通过数组缓冲

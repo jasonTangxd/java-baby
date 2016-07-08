@@ -14,7 +14,7 @@ public class Test2 {
     public static void main(String[] args) throws IOException{
 
         //1. 读取文件并获得通道channel
-        FileOutputStream writer = new FileOutputStream("abc1.txt");
+        FileOutputStream writer = new FileOutputStream("file/abc1.txt");
         FileChannel channel = writer.getChannel();
 
         //2. 创建一个缓存数组

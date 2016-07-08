@@ -13,7 +13,7 @@ public class BufferedReader01 {
 
     public static void main(String[] args) throws IOException {
 
-        BufferedReader bfr = new BufferedReader(new FileReader("abc.txt")) ;
+        BufferedReader bfr = new BufferedReader(new FileReader("file/abc.txt")) ;
 
         //读取数据第一种方式
         String line = null ;

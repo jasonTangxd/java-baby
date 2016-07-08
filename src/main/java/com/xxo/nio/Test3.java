@@ -14,7 +14,7 @@ public class Test3 {
     public static void main(String[] args) throws IOException {
 
         //1. 读取一个文件并获得管道channel
-        FileInputStream stream = new FileInputStream("abc.txt");
+        FileInputStream stream = new FileInputStream("file/abc.txt");
         FileChannel fc1 = stream.getChannel();
 
         //2. 写入源

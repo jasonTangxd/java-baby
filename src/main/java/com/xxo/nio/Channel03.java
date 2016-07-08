@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Channel03 {
     public static void main (String [] argv) throws IOException {
         //创建通道
-        FileChannel channel = new RandomAccessFile("momo.txt", "rw").getChannel();
+        FileChannel channel = new RandomAccessFile("file/momo.txt", "rw").getChannel();
         System.out.println("====="+channel.size());
         ByteBuffer buffer = ByteBuffer.allocate(10);
 
@@ -36,7 +36,7 @@ public class Channel03 {
 
 
     public static void readFile() throws IOException {
-        FileChannel channel = new RandomAccessFile("momo.txt", "rw").getChannel();
+        FileChannel channel = new RandomAccessFile("file/momo.txt", "rw").getChannel();
         ByteBuffer buffer = ByteBuffer.allocate(10);
         //读文件
         while(channel.read(buffer) != -1 ) {

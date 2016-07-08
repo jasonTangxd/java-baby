@@ -14,7 +14,7 @@ public class Test2 {
 
 	public static void main(String[] args) throws IOException {
 		//指定对应的文件目标
-		FileWriter fw = new FileWriter("abc.txt");
+		FileWriter fw = new FileWriter("file/abc.txt");
 		
 		//写入相应的数据
 		fw.write("abcde"+LINESEPARATOR +"superman");

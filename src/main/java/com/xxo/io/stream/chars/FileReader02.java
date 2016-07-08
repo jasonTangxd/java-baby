@@ -16,7 +16,7 @@ public class FileReader02 {
         FileReader fr = null ;
         FileWriter fw = null ;
         try {
-            fr = new FileReader("abc.txt") ;
+            fr = new FileReader("file/abc.txt") ;
             fw = new FileWriter("abc_copy.txt") ;
 
             char[] buf = new char[1024] ;
