@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.xxo</groupId>
-    <artifactId>JavaTouch_20120106</artifactId>
+    <artifactId>java-baby</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>JavaTouch_20120106</name>
+    <name>java-baby</name>
     <packaging>jar</packaging>
 
     <dependencies>
