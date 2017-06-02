@@ -13,21 +13,40 @@ package com.xxo.algorithm;
  */
 public class MaxSegmentSum {
 
+    //得到数组内容从0到log-1的随机数组
+    public static int[] getRandomArray(int log){
+        int[] result = new int[log];
+        for (int i = 0; i < log; i++) {
+            result[i] = i;
+        }
+        for (int i = 0; i < log; i++) {
+            int random = (int) (log * Math.random());
+            int temp = result[i];
+            result[i] = result[random];
+            result[random] = temp;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        maxSegmentSum3();
-        maxSegmentSum2();
+        int[] a = getRandomArray(10000) ;
+
+
+        maxSegmentSum3(a);
+        maxSegmentSum2(a);
+        maxSegmentSum1(a);
     }
 
 
     /**
      * 穷举
      */
-    public static void maxSegmentSum1(){
+    public static void maxSegmentSum1( int[] a ){
+        long startTime = System.currentTimeMillis();
 
         int max = 0;
         int start = 0;
         int end = 0;
-        int[] a = { -2,11,-4,13,-5,2,9,5,3,-9,7 } ;
         for (int i = 0; i < a.length; ++i) {
 
             for (int j = i; j < a.length; ++j) {
@@ -46,8 +65,9 @@ public class MaxSegmentSum {
         }
 
         System.out.println(max);
-        System.out.println(start);
-        System.out.println(end);
+//        System.out.println(start);
+//        System.out.println(end);
+        System.out.println( System.currentTimeMillis()-startTime );
 
     }
 
@@ -56,12 +76,12 @@ public class MaxSegmentSum {
      * 穷举
      * 并不需要每次都重新从起始位置求和加到终点位置.可以充分利用之前的计算结果
      */
-    public static void maxSegmentSum2(){
+    public static void maxSegmentSum2(int[] a){
+        long startTime = System.currentTimeMillis();
 
         int max = 0;
         int start = 0;
         int end = 0;
-        int[] a = { -2,11,-4,13,-5,2,9,5,3,-9,7 } ;
         for(int i = 0; i < a.length; ++i)
         {
             int sum = 0;
@@ -78,8 +98,9 @@ public class MaxSegmentSum {
         }
 
         System.out.println(max);
-        System.out.println(start);
-        System.out.println(end);
+//        System.out.println(start);
+//        System.out.println(end);
+        System.out.println( System.currentTimeMillis()-startTime );
 
     }
 
@@ -92,11 +113,11 @@ public class MaxSegmentSum {
      * 如果b[j-1] >0, 那么显然b[j] = b[j-1] + a[j]，用之前最大的一个加上a[j]即可，因为a[j]必须包含
      * 如果b[j-1]<=0, 那么b[j] = a[j] ,因为既然最大，前面的负数必然不能使你更大
      */
-    public static void maxSegmentSum3(){
-
-        int[] a = { -2,11,-4,13,-5,2,9,5,3,-9,7 } ;
+    public static void maxSegmentSum3(int[] a){
+        long startTime = System.currentTimeMillis();
         int max = 0;
-        int[] b = a;
+        int[] b = new int[a.length];
+        b[0] = a[0];
         for(int i = 1; i < a.length; ++i)
         {
             if(b[i-1]>0)
@@ -110,6 +131,7 @@ public class MaxSegmentSum {
         }
 
         System.out.println(max);
+        System.out.println( System.currentTimeMillis()-startTime );
 
     }
 
