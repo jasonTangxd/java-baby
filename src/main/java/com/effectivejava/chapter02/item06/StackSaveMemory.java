@@ -5,17 +5,20 @@ import java.util.Arrays;
 
 /**
  * 消除过期的对象引用
- * <p>
- * 那么哪里引起的内存泄漏呢？
- * 如果一个栈先是增长，然后再收缩，那么从栈中弹出来的对象讲不会被当做垃圾回收，即使使用的栈程序不再引用这些对象。
- * 这是因为，栈内部维护着对这些对象的过期引用（obsolete reference）。过期引用是指，永远也不会再被接触的引用。
+ *
+ * 消除过期引用
+ *
+ * 一般而言，只要类是自己管理内存，程序员就因该警惕内存泄漏的问题
+ * 内存泄漏的另一个常见来源就是缓存，可以使用WeakHashMap代表缓存，或者添加新条目的时候进行清理
+ * 内存泄漏的还有一个常见来源就是监听器和其他回调，
+ *
  */
-public class Stack {
+public class StackSaveMemory {
     private Object[] elements;
     private int size = 0;
     private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
-    public Stack() {
+    public StackSaveMemory() {
         elements = new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
@@ -27,12 +30,13 @@ public class Stack {
     public Object pop() {
         if (size == 0)
             throw new EmptyStackException();
-        return elements[--size];
+        Object result = elements[--size];
+        elements[--size] = null ;//消除引用
+        return result;
     }
 
     /**
-     * Ensure space for at least one more element, roughly doubling the capacity
-     * each time the array needs to grow.
+     * 数组扩容
      */
     private void ensureCapacity() {
         if (elements.length == size)
