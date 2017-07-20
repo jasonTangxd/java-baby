@@ -33,4 +33,8 @@ class Person {
 		return birthDate.compareTo(BOOM_START) >= 0
 				&& birthDate.compareTo(BOOM_END) < 0;
 	}
+
+
+	//Map接口的keySet方法返回该Map对象的Set视图，每次调用keySet都返回同样的Set实例。
+	//当其中一个返回对象发生变化时，所以其他的返回对象也要发生 变化。
 }

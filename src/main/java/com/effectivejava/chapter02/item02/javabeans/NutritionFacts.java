@@ -1,6 +1,15 @@
 // JavaBeans Pattern - allows inconsistency, mandates mutability - Pages 12-13
 package com.effectivejava.chapter02.item02.javabeans;
 
+/**
+ *
+ * 遇到多个构造器参数时，要考虑用构造器
+ *
+ * 方式二：JavaBean模式
+ * 		构造过程中被划分到了几个调用中，在构造过程中JavaBean可能处于不一致的状态。类无法仅仅通过检验构造器参数的有效性来保证一致性。
+ * 	    无法将类设置为不可变（即final类型），那么这样需要我们去确保它的线程安全。
+ *
+ */
 public class NutritionFacts {
 	// Parameters initialized to default values (if any)
 	private int servingSize = -1; // Required; no default value
